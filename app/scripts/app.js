@@ -22,30 +22,111 @@ app.controller('WorkoutsCtrl', function($scope) {
   };
 });
 
-app.controller('CreateWorkoutCtrl', function ($scope, $http, $location) {
-  // form save here
-  $scope.submit = function(){
-    
-    // TEMP get last id
-    $scope.workout._id = workouts[workouts.length - 1]._id + 1;
-
-    // add to workouts
-    workouts.push($scope.workout);
-    $location.path('/workouts');
-
-    // $http({
-    //   method: 'POST',
-    //   data: {url: $scope.url},
-    //   url: hostUrl + '/links'
-    // }).success(function(data, status){
-    //   console.log('Created link');
-    //   $location.path('/');
-    // });
-  };
-});
-
 app.controller('UpdateWorkoutCtrl', function($scope, $routeParams, $location){
-  
+
+  /****** jQuery Display : START ******/
+
+  $scope.closeWorkoutDisplay = function(){
+    $('#form-workout').slideUp(function(){
+      $('.workout-summery').fadeIn();
+      $('.table-exercises').fadeIn();
+    });
+  };
+
+  $scope.openWorkoutDisplay = function(){
+    $('.workout-summery').fadeOut(function(){
+      $('.table-exercises').fadeOut();
+      $('#form-workout').slideDown();
+    });
+  };
+
+  $scope.exerciseFormShow = function(){
+    $('.workout-edit').fadeOut(function(){
+      $('.exercise-edit').fadeIn();
+    });
+  };
+
+  $scope.exerciseFormHide = function(){
+    $('.exercise-edit').fadeOut(function(){
+      $('.workout-edit').fadeIn();
+    });
+  };
+
+  /****** jQuery Display : END ******/
+
+  $scope.submit = function(){
+    // update workout
+
+    if($scope.id !== undefined){
+      for(var i = 0; i < workouts.length; i++){
+        if(workouts[i]._id === $scope.workout._id) {
+          workouts[i] = $scope.workout;
+        }
+      }
+    } else {
+      // create new workout
+
+      // TEMP get last id
+      $scope.workout._id = workouts[workouts.length - 1]._id + 1;
+      $scope.workout.exercises = [];
+
+      // add to workouts
+      workouts.push($scope.workout);
+
+      // $http({
+      //   method: 'POST',
+      //   data: {url: $scope.url},
+      //   url: hostUrl + '/links'
+      // }).success(function(data, status){
+      //   console.log('Created link');
+      //   $location.path('/');
+      // });      
+    }
+
+    $scope.closeWorkoutDisplay();
+
+  };
+
+  $scope.cancel = function(){
+    if($scope.id !== undefined){
+      $scope.closeWorkoutDisplay();
+    } else {
+      $location.path('/');
+    }
+  };
+
+  $scope.exerciseSubmit = function(){
+    // save exercise to workout
+    if($scope.index !== undefined){
+      $scope.workout.exercises[$scope.index] = $scope.exercise;
+    } else {
+      $scope.workout.exercises.push($scope.exercise);
+      $scope.exerciseFormHide();
+    }
+    $scope.index = undefined;
+  };
+
+  $scope.removeExercise = function(item){
+    var index=$scope.workout.exercises.indexOf(item);
+    $scope.workout.exercises.splice(index,1);
+  };
+
+  $scope.updateExercise = function(item){
+    $scope.index = $scope.workout.exercises.indexOf(item);
+    $scope.exercise = item;
+    $scope.exerciseFormShow();
+  };
+
+  $scope.exerciseCancel = function(){
+    $scope.exerciseFormHide();
+  };
+
+  $scope.exerciseCreate = function(){
+    $scope.index = undefined;
+    $scope.exercise = undefined;
+    $scope.exerciseFormShow();
+  };
+
   $scope.findWorkout = function(id) {
     for(var i = 0; i < workouts.length; i++){
       if(workouts[i]._id === id) {
@@ -54,17 +135,18 @@ app.controller('UpdateWorkoutCtrl', function($scope, $routeParams, $location){
     }
   }
 
-  $scope.workout = $scope.findWorkout(Number($routeParams._id));
+  $scope.init =function(){
 
-  $scope.submit = function(){
-    // update workout
-    for(var i = 0; i < workouts.length; i++){
-      if(workouts[i]._id === $scope.workout._id) {
-        workouts[i] = $scope.workout;
-        $location.path('/workouts');
-      }
+    $scope.id = $routeParams._id;
+
+    if($scope.id !== undefined){
+      $scope.workout = $scope.findWorkout(Number($routeParams._id));
+      $scope.closeWorkoutDisplay();
     }
+
   };
+
+  $scope.init();
 });
 
 app.controller('WorkoutCtrl', function($scope, $routeParams, $location) {
@@ -101,10 +183,10 @@ app.config(function ($routeProvider) {
     }).
     when('/createWorkout', {
       templateUrl: 'views/create_workout.html',
-      controller: 'CreateWorkoutCtrl'
+      controller: 'UpdateWorkoutCtrl'
     }).
     when('/updateWorkout/:_id', {
-      templateUrl: 'views/update_workout.html',
+      templateUrl: 'views/create_workout.html',
       controller: 'UpdateWorkoutCtrl'
     }).
     when('/workout/:_id', {

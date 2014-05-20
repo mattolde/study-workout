@@ -6,44 +6,117 @@
   <h3 class="text-muted">study workout</h3>
 </div>
 
-<!-- Workout navigation here -->
+<div class="row workout-edit">
 
-<div class="row">
+  <!-- Workout navigation here -->
+  <nav class="navbar navbar-default nav-workouts workout-summery" role="navigation">
+    <div class="container-fluid">
+      
+      <h4>{{ workout.name }}</h4>
 
-  <form role="form" ng-submit='submit()' ng-controller='CreateWorkoutCtrl'>
-    <div class="form-group">
-      <label for="name">Workout Name</label>
-      <input ng-model='workout.name' type="text" class="form-control" id="name" />
-    </div>
-    
-    <div class="form-group">
-      <label for="category">Category</label>
-      <input ng-model='workout.category' type="text" class="form-control" id="category" placeholder="Enter Category">
-    </div>
+      <form class="navbar-form navbar-right">
+        <button ng-click="openWorkoutDisplay()" class="btn btn-default">Edit</button>      
+        <button ng-click="exerciseCreate()" class="btn btn-primary btn-workout-edit" role="button">Add Exercise</a>
+      </form>
 
-    <div class="form-group">
-      <label for="difficulty">Difficulty</label>
-      <select data-ng-model="workout.rating" class="form-control" id="difficulty">
-        <option value='1'>Easy</option>
-        <option value='2'>Medium</option>
-        <option value='3'>Hard</option>
-      </select>
-    </div>
+    </div><!-- /.container-fluid -->
+  </nav>
 
-    <div class="form-group">
-      <label for="estimatedTime">Estimated Time</label>
-      <input ng-model='workout.estimatedTime' type="text" class="form-control" id="estimatedTime" placeholder="Enter Estimated Time">
-    </div>
+  <form class="form-horizontal form-workout well" ng-submit='submit()' id="form-workout">
+    <fieldset>
+      
+      <legend>Workout</legend>
 
-    <div class="form-group">
-      <label for="description">Description</label>
-      <textarea ng-model='workout.description' class="form-control" id="description" rows="5"></textarea>
-    </div>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input ng-model='workout.name' type="text" class="form-control" id="name" />
+      </div>
+      
+      <div class="form-group">
+        <label for="category">Category</label>
+        <input ng-model='workout.category' type="text" class="form-control" id="category" placeholder="Enter Category">
+      </div>
 
-    <button type="submit" class="btn btn-default">Save</button>
+      <div class="form-group">
+        <label for="difficulty">Difficulty</label>
+        <select data-ng-model="workout.rating" class="form-control" id="difficulty">
+          <option value='1'>Easy</option>
+          <option value='2'>Medium</option>
+          <option value='3'>Hard</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="estimatedTime">Estimated Time</label>
+
+        <input ng-model='workout.estimatedTime' type="text" class="form-control" id="estimatedTime" placeholder="Enter Estimated Time">
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea ng-model='workout.description' class="form-control" id="description" rows="5"></textarea>
+      </div>
+
+      <div class="btns-form">
+        <button ng-click="cancel()" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+
+    </fieldset>
   </form>
+
+  <table class="table table-striped table-hover table-exercises">
+    <thead>
+      <tr>
+        <th>Question</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat='exercise in workout.exercises'>
+        <td>{{ exercise.question }}</td>
+        <td>
+          <a ng-click="removeExercise(exercise)" class="btn btn-danger" style="float:right;" role="button">Delete</a>
+          <a ng-click="updateExercise(exercise)" class="btn btn-primary" style="float:right;margin-right:10px;" role="button">Update</a>
+        </td>        
+      </tr>
+    </tbody>
+  </table>
 
 </div>
 
-<!-- <div class="footer">
-</div> -->
+<div class="row exercise-edit">
+  <form class="form-horizontal form-workout well" ng-submit='exerciseSubmit(workout)' id="form-exercise">
+    <fieldset>
+
+      <input type="hidden" value="{{ index }}" ng-model="index" />
+      
+      <legend>Exercise</legend>
+
+      <div class="form-group">
+        <label for="exercise.question">Question</label>
+        <textarea ng-model='exercise.question' class="form-control" id="exercise.question" rows="5"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="exercise.answer">Answer</label>
+        <textarea ng-model='exercise.answer' class="form-control" id="exercise.answer" rows="5"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="difficulty">Difficulty</label>
+        <select data-ng-model="workout.rating" class="form-control" id="difficulty">
+          <option value='1'>Easy</option>
+          <option value='2'>Medium</option>
+          <option value='3'>Hard</option>
+        </select>
+      </div>          
+
+      <div class="btns-form">
+        <button ng-click="exerciseCancel()" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+
+    </fieldset>
+  </form>  
+</div>

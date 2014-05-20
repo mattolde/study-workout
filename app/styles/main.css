@@ -6,7 +6,6 @@ body {
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
-.marketing,
 .footer {
   padding-left: 15px;
   padding-right: 15px;
@@ -31,6 +30,116 @@ body {
   border-top: 1px solid #e5e5e5;
 }
 
+.workout h1 {
+  text-align:center;
+}
+
+.table tr td {
+  font-size: 20px;
+}
+
+.exercises tr td a {
+  float:right;
+}
+
+.table-exercises {
+  display: none;
+}
+
+.exercise-edit {
+  display:none;
+}
+
+.btn-center {
+  display:block;
+  width:120px;
+  margin:0 auto;
+}
+
+.btn-exercise {
+  display: block;
+  margin:0 auto;
+}
+
+.panel-question > .panel-heading {
+  color: #ffffff;
+  background-color: #666;
+  border-color: #666;
+}
+
+.panel-question {
+  border-color: #666;
+}
+
+.nav-workouts h4 {
+  display:inline-block;
+  margin-right:10px;
+  vertical-align: middle;
+}
+
+.nav-workouts form button {
+  float:right;
+}
+
+.nav-workouts form .btn-workout-edit {
+  margin-right:10px;
+}
+
+.workout-summery {
+  display:none;
+}
+
+.workout-summery h4 {
+  margin-top:15px;
+}
+
+.form-workout {
+  width:50%;
+  margin:0 auto;
+  padding:15px 50px;
+}
+
+.btns-form {
+  width:130px;
+  margin:0 auto;
+}
+
+.tips {
+  list-style:none;
+  padding:0;
+  font-size:16px;
+  text-align:center; 
+}
+
+.resources {
+  width: 600px;
+  margin:15px auto 30px auto;
+}
+
+.resources li {
+  margin:5px 0;
+  font-size:18px;
+}
+
+.panel-title {
+  text-align:center;
+}
+
+.panel-question {
+  width:80%;
+  margin:10px auto;
+}
+
+.btn-group {
+  margin:0 auto;
+  width:140px;
+  display:block;
+}
+
+a.btn {
+  text-decoration:none;
+}
+
 /* Customize container */
 @media (min-width: 960px) {
   .container {
@@ -39,24 +148,6 @@ body {
 }
 .container-narrow > hr {
   margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-}
-.jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
-}
-
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-}
-.marketing p + h4 {
-  margin-top: 28px;
 }
 
 /* Responsive: Portrait tablets and up */
