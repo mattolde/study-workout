@@ -1,0 +1,61 @@
+<script>
+  $(".timer").TimeCircles({
+      "animation": "smooth",
+      "bg_width": 1.2,
+      "fg_width": 0.1,
+      "circle_bg_color": "#60686F",
+      "time": {
+          "Days": {
+              "text": "Days",
+              "color": "#FFCC66",
+              "show": false
+          },
+          "Hours": {
+              "text": "Hours",
+              "color": "#FFCC66",
+              "show": false
+          },
+          "Minutes": {
+              "text": "Minutes",
+              "color": "#BBFFBB",
+              "show": true
+          },
+          "Seconds": {
+              "text": "Seconds",
+              "color": "#99CCFF",
+              "show": true
+          }
+      }
+  });
+</script>
+
+<div ng-controller='WorkoutCtrl' class='workout'>
+  
+  <div class="timer"></div>
+
+  <h1>{{ workout.name }}</h1>
+
+  <ul class="resources">
+    <li ng-repeat="description in workout.descriptions">
+      {{ description }}
+    </li>
+  </ul>
+
+  <div class="panel panel-question" ng-repeat="exercise in workout.exercises">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{ exercise.question }}</h3>
+    </div>
+
+    <div class="panel-body">
+      <ul class="tips">
+        <li ng-repeat='tip in exercise.viewTips'>
+          {{ tip }}
+        </li>
+      </ul>
+      <button type="button" ng-click='addTip(workout, exercise, exercise.tips)' class="btn btn-default btn-exercise">View Tips</button>
+    </div>
+  </div>
+
+  <button type="button" ng-click='complete()' class="btn-lg btn-primary btn-center">Complete</button>
+
+</div>

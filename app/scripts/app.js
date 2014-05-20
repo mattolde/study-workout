@@ -67,6 +67,32 @@ app.controller('UpdateWorkoutCtrl', function($scope, $routeParams, $location){
   };
 });
 
+app.controller('WorkoutCtrl', function($scope, $routeParams, $location) {
+  $scope.viewTips = [];
+
+  $scope.findWorkout = function(id) {
+    for(var i = 0; i < workouts.length; i++){
+      if(workouts[i]._id === id) {
+        return workouts[i];
+      }
+    }
+  }
+
+  $scope.workout = $scope.findWorkout(Number($routeParams._id));
+
+  $scope.addTip=function(workout, exercise, tips){
+    for(var i = 0; i < workout.exercises.length; i++){
+      if(workout.exercises[i] === exercise) {
+        workout.exercises[i].viewTips = tips;          
+      }
+    }
+  }
+
+  $scope.complete = function(){
+    $location.path('/');
+  };
+});
+
 app.config(function ($routeProvider) {
   $routeProvider
     .when('/', {
@@ -80,6 +106,10 @@ app.config(function ($routeProvider) {
     when('/updateWorkout/:_id', {
       templateUrl: 'views/update_workout.html',
       controller: 'UpdateWorkoutCtrl'
+    }).
+    when('/workout/:_id', {
+      templateUrl: 'views/workout.html',
+      controller: 'WorkoutCtrl'
     }).
     when('/workouts', {
       templateUrl: 'views/workouts.html',

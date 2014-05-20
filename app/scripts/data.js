@@ -3,17 +3,21 @@ var workouts = [
     _id : 1,
     name: 'Regex',
     category: 'general',
-    description: 'Regular expressions',
+    descriptions: ['Use http://www.regexr.com/ to help with building your your solution.'],
     rating: 2,
-    estimatedTime: 10,
+    estimatedTime: 900,
     exercises: [
       {
-        question: 'Only get capital letters',
-        answer: '/[A-Z]/g'
+        question: 'Only get capital letters from "This is the Best 1!"',
+        answer: '/[A-Z]/g',
+        tips: ['Focus on getting characters'],
+        viewTips: []
       },
       {
         question: 'Only get numbers',
-        answer: '/[A-Z]/g'
+        answer: '/[A-Z]/g',
+        tips: ['Focus on getting numbers'],
+        viewTips: []
       }
     ]
   },
@@ -21,7 +25,7 @@ var workouts = [
     _id : 2,
     name: 'Javascript',
     category: 'programming',
-    description: 'scripting programming language',
+    descriptions: ['scripting programming language'],
     rating: 1,
     estimatedTime: 30,
     exercises: [

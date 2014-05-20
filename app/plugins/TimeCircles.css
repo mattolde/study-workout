@@ -1,0 +1,115 @@
+
+/**
+ *  This element is created inside your target element
+ *  It is used so that your own element will not need to be altered
+ **/
+
+.workout h1 {
+  text-align:center;
+}
+
+.table tr td {
+  font-size: 20px;
+}
+
+.exercises tr td a {
+  float:right;
+}
+
+.btn-center {
+  display:block;
+  width:120px;
+  margin:0 auto;
+}
+
+.btn-exercise {
+  display: block;
+  margin:0 auto;
+}
+
+.panel-question > .panel-heading {
+  color: #ffffff;
+  background-color: #666;
+  border-color: #666;
+}
+
+.panel-question {
+  border-color: #666;
+}
+
+.tips {
+  list-style:none;
+  padding:0;
+  font-size:16px;
+  text-align:center; 
+}
+
+.resources {
+  width: 600px;
+  margin:15px auto 30px auto;
+}
+
+.resources li {
+  margin:5px 0;
+  font-size:18px;
+}
+
+.panel-title {
+  text-align:center;
+}
+
+.panel-question {
+  width:80%;
+  margin:10px auto;
+}
+
+.btn-group {
+  margin:0 auto;
+  width:140px;
+  display:block;
+}
+
+.timer {
+  height:150px;
+  width: 300px;
+  margin:0 auto;
+}
+
+.time_circles {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/**
+ *  This is all the elements used to house all text used
+ * in time circles
+ **/
+.time_circles > div {
+  position: absolute;
+  text-align: center;
+}
+
+/**
+ *  Titles (Days, Hours, etc)
+ **/
+.time_circles > div > h4 {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Century Gothic', Arial;
+}
+
+/**
+ *  Time numbers, ie: 12
+ **/
+.time_circles > div > span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: 'Century Gothic', Arial;
+  font-size: 300%;
+  margin-top: 0.4em;
+  font-weight: bold;
+}

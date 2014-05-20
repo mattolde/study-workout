@@ -9,21 +9,23 @@
 <div class="row" ng-model="day">
   <h2>{{ day.date }}</h2>
 
-  <ul class="workouts" ng-repeat='workout in day.workouts'>
-    <li>
-      <h3>{{ workout.name }}</h3>    
-      <ul>
-        <li>Category: {{ workout.category }}</li>
-        <li>Description: {{ workout.description }}</li>
-      </ul>
+  <table class="table exercises">
+    <thead>
+      <tr>
+        <th>Topic</th>
+        <th>Time</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tr ng-repeat='workout in day.workouts'>
+      <td>{{ workout.name }}</td>
+      <td>{{ workout.estimatedTime }}</td>
+      <td>
+        <a href="#/workout/{{ workout._id }}" class="btn btn-success" role="button">Start</a>
+      </td>
+    </tr>
+  </table>
 
-      <ul>
-        <li ng-repeat="exercise in workout.exercises">
-          {{ exercise.question }}
-        </li>
-      </ul>      
-    </li>
-  <ul>
 </div>
 
-<div class="footer"></div>
+<!-- <div class="footer"></div> -->
