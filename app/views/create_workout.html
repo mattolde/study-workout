@@ -1,0 +1,49 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li><a ng-href="#">Dashboard</a></li>
+    <li class="active"><a ng-href="#/workouts">Workouts</a></li>
+  </ul>
+  <h3 class="text-muted">study workout</h3>
+</div>
+
+<!-- Workout navigation here -->
+
+<div class="row">
+
+  <form role="form" ng-submit='submit()' ng-controller='CreateWorkoutCtrl'>
+    <div class="form-group">
+      <label for="name">Workout Name</label>
+      <input ng-model='workout.name' type="text" class="form-control" id="name" />
+    </div>
+    
+    <div class="form-group">
+      <label for="category">Category</label>
+      <input ng-model='workout.category' type="text" class="form-control" id="category" placeholder="Enter Category">
+    </div>
+
+    <div class="form-group">
+      <label for="difficulty">Difficulty</label>
+      <select data-ng-model="workout.rating" class="form-control" id="difficulty">
+        <option value='1'>Easy</option>
+        <option value='2'>Medium</option>
+        <option value='3'>Hard</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="estimatedTime">Estimated Time</label>
+      <input ng-model='workout.estimatedTime' type="text" class="form-control" id="estimatedTime" placeholder="Enter Estimated Time">
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea ng-model='workout.description' class="form-control" id="description" rows="5"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-default">Save</button>
+  </form>
+
+</div>
+
+<!-- <div class="footer">
+</div> -->

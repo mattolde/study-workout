@@ -1,0 +1,46 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li><a ng-href="#">Dashboard</a></li>
+    <li class="active"><a>Workouts</a></li>
+  </ul>
+  <h3 class="text-muted">study workout</h3>
+</div>
+
+<div ng-controller='WorkoutsCtrl'>
+  
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <form class="navbar-form navbar-right">
+        <a href="#/createWorkout" class="btn btn-primary" style="float:right;" role="button">Create Workout</a>
+      </form>
+      <form class="navbar-form navbar-left" role="search" >
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Filter" ng-model="query">
+        </div>
+      </form>
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat='workout in workouts | filter:{name:query}'>
+        <td>{{ workout.name }}</td>
+        <td>{{ workout.category }}</td>
+        <td>
+          <a ng-click="remove(workout)" class="btn btn-danger" style="float:right;" role="button">Delete</a>
+          <a href="#/updateWorkout/{{ workout._id }}" class="btn btn-primary" style="float:right;margin-right:10px;" role="button">Update</a>
+        </td>        
+      </tr>
+    </tbody>
+  </table>  
+</div>
+
+
+<!-- <div class="footer"></div> -->

@@ -1,0 +1,29 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <li class="active"><a ng-href="#">Dashboard</a></li>
+    <li><a ng-href="#/workouts">Workouts</a></li>
+  </ul>
+  <h3 class="text-muted">study workout</h3>
+</div>
+
+<div class="row" ng-model="day">
+  <h2>{{ day.date }}</h2>
+
+  <ul class="workouts" ng-repeat='workout in day.workouts'>
+    <li>
+      <h3>{{ workout.name }}</h3>    
+      <ul>
+        <li>Category: {{ workout.category }}</li>
+        <li>Description: {{ workout.description }}</li>
+      </ul>
+
+      <ul>
+        <li ng-repeat="exercise in workout.exercises">
+          {{ exercise.question }}
+        </li>
+      </ul>      
+    </li>
+  <ul>
+</div>
+
+<div class="footer"></div>
