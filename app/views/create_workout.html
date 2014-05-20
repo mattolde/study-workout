@@ -73,7 +73,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat='exercise in workout.exercises'>
+      <tr ng-repeat='exercise in exercises'>
         <td>{{ exercise.question }}</td>
         <td>
           <a ng-click="removeExercise(exercise)" class="btn btn-danger" style="float:right;" role="button">Delete</a>
@@ -89,8 +89,6 @@
   <form class="form-horizontal form-workout well" ng-submit='exerciseSubmit(workout)' id="form-exercise">
     <fieldset>
 
-      <input type="hidden" value="{{ index }}" ng-model="index" />
-      
       <legend>Exercise</legend>
 
       <div class="form-group">
@@ -105,7 +103,7 @@
 
       <div class="form-group">
         <label for="difficulty">Difficulty</label>
-        <select data-ng-model="workout.rating" class="form-control" id="difficulty">
+        <select data-ng-model="exercise.rating" class="form-control" id="difficulty">
           <option value='1'>Easy</option>
           <option value='2'>Medium</option>
           <option value='3'>Hard</option>
