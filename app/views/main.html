@@ -14,12 +14,16 @@
       <tr>
         <th>Topic</th>
         <th>Time</th>
+        <th>Times Taken</th>
+        <th>Best Time</th>
         <th></th>
       </tr>
     </thead>
     <tr ng-repeat='workout in day.workouts'>
       <td>{{ workout.name }}</td>
       <td>{{ workout.estimatedTime }}</td>
+      <td>{{ workout.count }}</td>
+      <td>{{ workout.bestTime }}</td>
       <td>
         <a href="#/workout/{{ workout._id }}" class="btn btn-success" role="button">Start</a>
       </td>

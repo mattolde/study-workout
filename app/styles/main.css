@@ -46,6 +46,10 @@ body {
   display: none;
 }
 
+.table-exercises tr td:last-child {
+  width:200px;
+}
+
 .exercise-edit {
   display:none;
 }
@@ -71,6 +75,10 @@ body {
   border-color: #666;
 }
 
+.exercise-answer {
+  display:none;
+}
+
 .nav-workouts h4 {
   display:inline-block;
   margin-right:10px;
@@ -93,10 +101,15 @@ body {
   margin-top:15px;
 }
 
+.form-exercise,
 .form-workout {
   width:50%;
   margin:0 auto;
   padding:15px 50px;
+}
+
+.form-workout {
+  display:none;
 }
 
 .btns-form {
@@ -132,8 +145,12 @@ body {
 
 .btn-group {
   margin:0 auto;
-  width:140px;
+  width:200px;
   display:block;
+}
+
+.btn-save-workout{
+  display:none;
 }
 
 a.btn {

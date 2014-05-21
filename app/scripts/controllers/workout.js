@@ -97,11 +97,7 @@ app.controller('UpdateWorkoutCtrl', function($scope, $routeParams, $location, $h
   };
 
   $scope.cancel = function(){
-    if($scope.id !== undefined){
-      $scope.closeWorkoutDisplay();
-    } else {
-      $location.path('/');
-    }
+    $scope.closeWorkoutDisplay();
   };
 
   $scope.exerciseSubmit = function(){
@@ -162,6 +158,8 @@ app.controller('UpdateWorkoutCtrl', function($scope, $routeParams, $location, $h
       $scope.getWorkout($scope.workoutId);
       $scope.getExercises($scope.workoutId);
       $scope.closeWorkoutDisplay();
+    } else {
+      $('.form-workout').fadeIn();
     }
 
   };
@@ -171,24 +169,26 @@ app.controller('UpdateWorkoutCtrl', function($scope, $routeParams, $location, $h
 
 app.controller('WorkoutsCtrl', function($scope, $http) {
 
-  $http({
-    method: 'GET',
-    url: hostUrl + '/workouts'
-  }).success(function(workouts){
-    $scope.workouts = workouts;
-  });
+  $scope.getWorkouts = function(){
+    $http({
+      method: 'GET',
+      url: hostUrl + '/workouts'
+    }).success(function(workouts){
+      $scope.workouts = workouts;
+    });
+  };
 
   $scope.remove = function(item){
     $http({
       method: 'DELETE',
       url: hostUrl + '/workouts/' + item._id
     }).success(function(){
-      console.log('DELETED');
+      $scope.getWorkouts();
     });
   };
 
+  $scope.getWorkouts();
 });
-
 
 app.controller('WorkoutCtrl', function($scope, $routeParams, $location, $http) {
 
@@ -213,6 +213,32 @@ app.controller('WorkoutCtrl', function($scope, $routeParams, $location, $http) {
   $scope.getWorkout($routeParams.id);
 
   $scope.complete = function(){
+    $(".timer").TimeCircles().stop();
+    $('.tips').hide();
+    $('.btn-tip').hide();
+    $('.btn-complete').hide();
+    $('.btn-save-workout').show();
+    $('.exercise-answer').slideDown();
+
+    if($scope.workout.count === null){
+      $scope.workout.count = 1;
+    } else {
+      $scope.workout.count += 1;
+    }
+
+    $scope.workout.bestTime = $(".timer").TimeCircles().getTime() * -1;
+
+    $http({
+      method: 'PUT',
+      data: $scope.workout,
+      url: hostUrl + '/workouts'
+    }).success(function(workout){
+      // $scope.workout = workout;
+      // $scope.closeWorkoutDisplay();
+    });
+  };
+
+  $scope.save = function(){
     $location.path('/');
   };
 });

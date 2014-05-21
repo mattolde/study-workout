@@ -47,15 +47,33 @@
     </div>
 
     <div class="panel-body">
+
+      <div class="exercise-answer">
+        
+        <p>{{ exercise.answer }}</p>
+
+        <div class="btn-group">
+          <button type="button" class="btn btn-default">Easy</button>
+          <button type="button" class="btn btn-default">Medium</button>
+          <button type="button" class="btn btn-default">Hard</button>
+        </div>
+
+      </div>
+      
       <ul class="tips">
         <li ng-repeat='tip in exercise.viewTips'>
           {{ tip }}
         </li>
       </ul>
-      <button type="button" ng-click='addTip(workout, exercise, exercise.tips)' class="btn btn-default btn-exercise">View Tips</button>
+      <button type="button" class="btn btn-default btn-exercise btn-tip">View Tips</button>
+
     </div>
   </div>
 
-  <button type="button" ng-click='complete()' class="btn-lg btn-primary btn-center">Complete</button>
+  <button type="button" ng-click='complete()' class="btn-complete btn-lg btn-primary btn-center">Complete</button>
+
+  <div class="btn-save-workout">
+    <button type="button" ng-click='save()' class="btn-lg btn-success btn-center">Exit</button>
+  </div>
 
 </div>
